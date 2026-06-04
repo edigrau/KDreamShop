@@ -1,357 +1,412 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDream Shop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDream Shop</title>
 
-    <style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
+<style>
 
-        body{
-            background:#062b63;
-            color:white;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        /* HEADER */
+html{
+    scroll-behavior:smooth;
+}
 
-        header{
-            position:relative;
-            width:100%;
-            height:100vh;
-            overflow:hidden;
+body{
+    background:linear-gradient(180deg,#031633,#062b63);
+    color:white;
+}
 
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            padding:20px;
-        }
+/* HEADER */
 
-        header video{
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            z-index:-2;
-        }
+header{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
 
-        header::before{
-            content:"";
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,0,0,0.65);
-            z-index:-1;
-        }
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
 
-        /* LOGO (FIX LIMPIO SIN BLOQUE VISUAL) */
+header video{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
 
-        .logo{
-            position:absolute;
-            top:30px;
-            left:40px;
-            z-index:10;
+header::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.65);
+    z-index:-1;
+}
 
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
+/* LOGO */
 
-        .logo img{
-            width:140px;
-            height:auto;
+.logo{
+    position:absolute;
+    top:25px;
+    left:35px;
+    z-index:10;
+}
 
-            object-fit:contain;
-            background:transparent;
+.logo img{
+    width:140px;
+    filter:drop-shadow(0 0 15px rgba(105,188,255,.7));
+    transition:.3s;
+}
 
-            filter:drop-shadow(0 0 15px rgba(105,188,255,0.6));
+.logo img:hover{
+    transform:scale(1.05);
+}
 
-            transition:0.4s;
+/* TEXTO HEADER */
 
-            display:block;
-        }
+.contenido-header{
+    max-width:800px;
+    animation:fade 1.2s ease;
+}
 
-        .logo img:hover{
-            transform:scale(1.05);
-        }
+.contenido-header h1{
+    font-size:30px;
+    font-weight:300;
+    letter-spacing:2px;
+}
 
-        .contenido-header{
-            max-width:800px;
-            animation:fade 1.5s ease;
-        }
+.contenido-header h2{
+    font-size:80px;
+    font-weight:700;
+    margin:15px 0;
 
-        .contenido-header h1{
-            font-size:28px;
-            font-weight:normal;
-            margin-bottom:10px;
-            letter-spacing:2px;
-        }
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #69bcff
+    );
 
-        .contenido-header h2{
-            font-size:70px;
-            color:#69bcff;
-            margin-bottom:20px;
-            text-shadow:0 0 15px rgba(105,188,255,0.5);
-        }
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-        .contenido-header p{
-            font-size:22px;
-            line-height:1.6;
-            margin-bottom:30px;
-        }
+.contenido-header p{
+    font-size:22px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
 
-        .btn{
-            display:inline-block;
-            padding:15px 35px;
-            background:#032492;
-            color:white;
-            text-decoration:none;
-            border-radius:40px;
-            font-size:18px;
-            font-weight:bold;
-            transition:0.4s;
-        }
+.btn{
+    display:inline-block;
+    padding:16px 38px;
 
-        .btn:hover{
-            background:#69bcff;
-            transform:translateY(-3px);
-        }
+    text-decoration:none;
+    color:white;
 
-        /* NAV */
+    border-radius:50px;
 
-        nav{
-            width:100%;
-            background:#032492;
-            padding:18px 40px;
+    background:linear-gradient(
+        135deg,
+        #69bcff,
+        #2f55ff
+    );
 
-            display:flex;
-            justify-content:center;
-            gap:30px;
+    box-shadow:0 5px 25px rgba(105,188,255,.4);
 
-            position:sticky;
-            top:0;
-            z-index:100;
-            box-shadow:0 2px 10px rgba(0,0,0,0.3);
-        }
+    transition:.4s;
+}
 
-        nav a{
-            color:white;
-            text-decoration:none;
-            font-size:18px;
-            font-weight:bold;
-            transition:0.3s;
-            position:relative;
-        }
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 35px rgba(105,188,255,.6);
+}
 
-        nav a::after{
-            content:"";
-            position:absolute;
-            left:0;
-            bottom:-5px;
-            width:0%;
-            height:2px;
-            background:#69bcff;
-            transition:0.3s;
-        }
+/* NAVBAR */
 
-        nav a:hover{
-            color:#69bcff;
-        }
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
 
-        nav a:hover::after{
-            width:100%;
-        }
+    display:flex;
+    justify-content:center;
+    gap:35px;
 
-        /* SECCIONES */
+    padding:18px;
 
-        .contenedor{
-            width:90%;
-            max-width:1200px;
-            margin:auto;
-            padding:80px 0;
-        }
+    background:rgba(3,36,146,.8);
 
-        .cards{
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-            gap:30px;
-        }
+    backdrop-filter:blur(10px);
 
-        .card{
-            background:rgb(1, 19, 53);
-            padding:35px;
-            border-radius:20px;
-            transition:0.4s;
-            box-shadow:0 5px 20px rgba(0,0,0,0.3);
-        }
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
 
-        .card:hover{
-            transform:translateY(-10px);
-            box-shadow:0 10px 30px rgba(0,0,0,0.5);
-        }
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    position:relative;
+    transition:.3s;
+}
 
-        .card h2{
-            color:#69bcff;
-            margin-bottom:15px;
-            font-size:28px;
-        }
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
 
-        .card p{
-            line-height:1.7;
-            color:#ddd;
-        }
+    width:0%;
+    height:2px;
 
-        /* FOOTER */
+    background:#69bcff;
+    transition:.3s;
+}
 
-        footer{
-            text-align:center;
-            padding:30px;
-            background:#032492;
-            color:white;
-            margin-top:50px;
-        }
+nav a:hover{
+    color:#69bcff;
+}
 
-        /* ANIMACIÓN */
+nav a:hover::after{
+    width:100%;
+}
 
-        @keyframes fade{
-            from{
-                opacity:0;
-                transform:translateY(30px);
-            }
+/* CONTENIDO */
 
-            to{
-                opacity:1;
-                transform:translateY(0);
-            }
-        }
+.contenedor{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:90px 0;
+}
 
-        /* RESPONSIVE */
+.titulo{
+    text-align:center;
+    color:#69bcff;
+    margin-bottom:50px;
+    font-size:40px;
+}
 
-        @media(max-width:768px){
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
 
-            .contenido-header h2{
-                font-size:50px;
-            }
+.card{
+    background:rgba(255,255,255,.05);
 
-            .contenido-header p{
-                font-size:18px;
-            }
+    backdrop-filter:blur(10px);
 
-            nav{
-                flex-wrap:wrap;
-                gap:15px;
-            }
+    padding:35px;
 
-            .logo{
-                top:20px;
-                left:20px;
-            }
+    border-radius:25px;
 
-            .logo img{
-                width:100px;
-            }
+    border:1px solid rgba(255,255,255,.1);
 
-        }
+    transition:.4s;
 
-    </style>
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.card:hover{
+    transform:translateY(-12px);
+
+    border-color:#69bcff;
+
+    box-shadow:0 15px 35px rgba(105,188,255,.25);
+}
+
+.card h2{
+    color:#69bcff;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+/* INFO EXTRA */
+
+.info{
+    margin-top:80px;
+    text-align:center;
+}
+
+.info h2{
+    color:#69bcff;
+    margin-bottom:20px;
+}
+
+.info p{
+    max-width:800px;
+    margin:auto;
+    line-height:1.8;
+    color:#ddd;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:40px;
+
+    background:#021536;
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    color:#cfd8e6;
+}
+
+/* ANIMACIÓN */
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .contenido-header h2{
+        font-size:55px;
+    }
+
+    .contenido-header p{
+        font-size:18px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        gap:15px;
+    }
+
+    .logo{
+        left:15px;
+        top:15px;
+    }
+
+    .logo img{
+        width:100px;
+    }
+
+    .titulo{
+        font-size:30px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<header>
 
-    <header>
+    <video autoplay muted loop>
+        <source src="supershy.mp4" type="video/mp4">
+    </video>
 
-        <video autoplay muted loop>
-            <source src="supershy.mp4" type="video/mp4">
-        </video>
+    <div class="logo">
+        <img src="logo.png" alt="Logo KDream Shop">
+    </div>
 
-        <!-- LOGO -->
+    <div class="contenido-header">
 
-        <div class="logo">
-            <img src="logo.png" alt="Logo KDream Shop">
-        </div>
+        <h1>Bienvenido a</h1>
 
-        <div class="contenido-header">
-
-            <h1>Bienvenido a</h1>
-
-            <h2>KDream Shop</h2>
-
-            <p>
-                Encuentra álbumes, photocards y lightsticks
-                de tus artistas favoritos del K-Pop.
-            </p>
-
-            <a href="#contenido" class="btn">
-                Explorar tienda
-            </a>
-
-        </div>
-
-    </header>
-
-    <!-- NAV -->
-
-    <nav>
-
-        <a href="index.html">Principal</a>
-
-        <a href="pc.html">Photocards</a>
-
-        <a href="ls.html">Lightsticks</a>
-
-        <a href="album.html">Álbumes</a>
-
-    </nav>
-
-    <!-- CONTENIDO -->
-
-    <main id="contenido" class="contenedor">
-
-        <div class="cards">
-
-            <div class="card">
-                <h2>Photocards</h2>
-                <p>Colecciona photocards exclusivas de tus grupos favoritos.</p>
-            </div>
-
-            <div class="card">
-                <h2>Lightsticks</h2>
-                <p>Encuentra lightsticks oficiales para conciertos.</p>
-            </div>
-
-            <div class="card">
-                <h2>Álbumes</h2>
-                <p>Compra álbumes originales con inclusiones especiales.</p>
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>© 2026 KDream Shop | Todos los derechos reservados</p>
+        <h2>KDream Shop</h2>
 
         <p>
-            Edwin David Grau Flores | III Informática
+            Encuentra álbumes, photocards y lightsticks
+            de tus artistas favoritos del K-Pop.
         </p>
 
-    </footer>
+        <a href="#contenido" class="btn">
+            Explorar tienda
+        </a>
+
+    </div>
+
+</header>
+
+<nav>
+
+    <a href="index.html">Principal</a>
+    <a href="pc.html">Photocards</a>
+    <a href="ls.html">Lightsticks</a>
+    <a href="album.html">Álbumes</a>
+
+</nav>
+
+<main id="contenido" class="contenedor">
+
+    <h1 class="titulo">Nuestros Productos</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>Photocards</h2>
+            <p>Colecciona photocards exclusivas de tus artistas favoritos del K-Pop.</p>
+        </div>
+
+        <div class="card">
+            <h2>Lightsticks</h2>
+            <p>Encuentra lightsticks oficiales para apoyar a tu grupo en conciertos.</p>
+        </div>
+
+        <div class="card">
+            <h2>Álbumes</h2>
+            <p>Álbumes originales con photobooks, posters e inclusiones especiales.</p>
+        </div>
+
+    </div>
+
+    <section class="info">
+
+        <h2>¿Por qué elegir KDream Shop?</h2>
+
+        <p>
+            Somos una tienda inspirada en la pasión por el K-Pop. Ofrecemos
+            productos de calidad para que puedas disfrutar de tus grupos
+            favoritos y ampliar tu colección de manera fácil y segura.
+        </p>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <p>© 2026 KDream Shop | Todos los derechos reservados</p>
+
+    <p>Edwin David Grau Flores | III Informática</p>
+
+</footer>
 
 </body>
 </html>
